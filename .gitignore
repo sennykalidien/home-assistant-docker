@@ -1,0 +1,37 @@
+# Ignore everything
+/*
+
+# Except for these files in the root
+!/sudo
+!/.gitignore
+!/.env.sample
+!/docker-compose-config.yml
+!/docker-compose-hass.yml
+# !/docker-compose-nodes.yml
+
+# Or these files in the subdirectories...
+!home-assistant/
+home-assistant/*
+!home-assistant/config/
+home-assistant/config/*
+!home-assistant/config/configuration.yaml
+!home-assistant/config/secrets-sample.yaml
+
+!influxdb/
+influxdb/*
+!influxdb/config/
+influxdb/config/*
+!/influxdb/config/influx-configs
+
+!mosquitto/
+mosquitto/*
+!mosquitto/config/
+mosquitto/config/*
+!/mosquitto/config/mosquitto.conf
+
+!zigbee2mqtt/
+zigbee2mqtt/*
+!zigbee2mqtt/data/
+zigbee2mqtt/data/*
+!/zigbee2mqtt/data/configuration.yaml
+!/zigbee2mqtt/data/secret-sample.yaml

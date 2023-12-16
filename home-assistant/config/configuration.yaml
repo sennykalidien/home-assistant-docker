@@ -1,0 +1,69 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+bluetooth:
+
+notify:
+  - platform: html5
+    vapid_pub_key: !secret vapid_pub_key
+    vapid_prv_key: !secret vapid_prv_key
+    vapid_email: !secret vapid_email
+
+# Additional sidebar items
+panel_iframe:
+  portainer:
+    title: Portainer
+    icon: mdi:docker
+    url: https://portainer.sennify.com
+    require_admin: true     
+  grafana:
+    title: Grafana
+    icon: mdi:graph
+    url: https://grafana.sennify.com
+    require_admin: true    
+  mysterium:
+    title: Mysterium
+    icon: mdi:vpn
+    url: https://myst.sennify.com
+    require_admin: true        
+  duplicati:
+    title: Duplicati
+    icon: mdi:backup-restore
+    url: https://duplicati.sennify.com
+    require_admin: true    
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+google_assistant:
+  project_id: home-assistant-8833
+  service_account: !include SERVICE_ACCOUNT.json
+  report_state: true
+
+influxdb:
+  api_version: 2
+  ssl: false
+  port: 8086
+  host: !secret influxdb_host
+  token: !secret influxdb_token
+  organization: !secret influx_org # The InfluxDB organisation that the bucket will belong to.
+  bucket: !secret influx_bucket # The name of the bucket where the data will be saved
+  
+# recorder:
+#   db_url: !secret postgres_url   
+
+http:
+  ssl_certificate: /config/ssl/origin.pem
+  ssl_key: /config/ssl/privkey.pem
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.50.160
